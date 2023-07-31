@@ -1,0 +1,7 @@
+services:
+  jupyter_pyspark:
+    build: ./src/
+    volumes:
+      - ./src:/app
+    ports:
+      - 8888:8888
