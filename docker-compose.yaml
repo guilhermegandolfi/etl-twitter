@@ -3,5 +3,9 @@ services:
     build: ./src/
     volumes:
       - ./src:/app
+      - lib:/app/lib
     ports:
       - 8888:8888
+
+volumes:
+  lib:
