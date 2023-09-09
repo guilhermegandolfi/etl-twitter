@@ -2,10 +2,19 @@ services:
   jupyter_pyspark:
     build: ./src/
     volumes:
-      - ./src:/app
-      - lib:/app/lib
+      - type: bind
+        source: ./src
+        target: /app
+        bind: 
+          propagation: rslave
+
     ports:
       - 8888:8888
 
-volumes:
-  lib:
+  python_lib:
+    image: python
+    working_dir: /package
+    volumes: 
+      - ./src:/package
+    entrypoint: ["pip3", "install", "--target", "/package/python_libs/python/", "-r", "requirements.txt"]
+
