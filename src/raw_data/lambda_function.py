@@ -63,7 +63,7 @@ class Ingestion:
             star_wars.get_data()
 
         star_wars_upload = Ingestion()
-        star_wars_upload.upload_s3('star-wars-etl-dev')
+        star_wars_upload.upload_s3('star-wars-etl-dev', 'raw_data')
 
 
 def lambda_handler(event, context):
