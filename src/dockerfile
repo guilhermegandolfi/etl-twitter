@@ -1,13 +1,23 @@
-FROM jupyter/pyspark-notebook
+FROM amazon/aws-glue-libs:glue_libs_4.0.0_image_01
 
-WORKDIR /app
 
-COPY . .
+#RUN mamba install --yes 'delta-spark' && \
+#    mamba clean --all -f -y && \
+#    fix-permissions "${CONDA_DIR}" && \
+#    fix-permissions "/home/${NB_USER}"
 
-USER root
 
-RUN pip install --no-cache --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip
+# RUN apt-get update && sudo apt-get install awscli --yes && aws --version
+#RUN pip3 install --upgrade pip
+#RUN pip3 install delta-spark
 
-RUN pip install --no-cache --trusted-host pypi.org --trusted-host files.pythonhosted.org -r 'requirements.txt'
+#RUN echo 'spark.sql.extensions io.delta.sql.DeltaSparkSessionExtension' >> "${SPARK_HOME}/conf/spark-defaults.conf" && \
+#    echo 'spark.sql.catalog.spark_catalog org.apache.spark.sql.delta.catalog.DeltaCatalog' >> "${SPARK_HOME}/conf/spark-defaults.conf"
 
-EXPOSE 8888
+
+# Trigger download of delta lake files
+#RUN echo "from pyspark.sql import SparkSession" > /tmp/init-delta.py && \
+#    echo "from delta import *" >> /tmp/init-delta.py && \
+#    echo "spark = configure_spark_with_delta_pip(SparkSession.builder).getOrCreate()" >> /tmp/init-delta.py && \
+#    python /tmp/init-delta.py && \
+#    rm /tmp/init-delta.py

@@ -1,0 +1,141 @@
+{
+    "fields": [
+      {
+        "metadata": {},
+        "name": "count",
+        "nullable": true,
+        "type": "long"
+      },
+      {
+        "metadata": {},
+        "name": "next",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "previous",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "results",
+        "nullable": true,
+        "type": {
+          "containsNull": true,
+          "elementType": {
+            "fields": [
+              {
+                "metadata": {},
+                "name": "average_height",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "average_lifespan",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "classification",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "created",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "designation",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "edited",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "eye_colors",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "films",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "hair_colors",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "homeworld",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "language",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "name",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "people",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "skin_colors",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "url",
+                "nullable": true,
+                "type": "string"
+              }
+            ],
+            "type": "struct"
+          },
+          "type": "array"
+        }
+      },
+      {
+        "metadata": {},
+        "name": "dat_load",
+        "nullable": true,
+        "type": "string"
+      }
+    ],
+    "type": "struct"
+  }

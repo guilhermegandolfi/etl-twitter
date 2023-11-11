@@ -1,0 +1,155 @@
+{
+    "fields": [
+      {
+        "metadata": {},
+        "name": "count",
+        "nullable": true,
+        "type": "long"
+      },
+      {
+        "metadata": {},
+        "name": "next",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "previous",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "results",
+        "nullable": true,
+        "type": {
+          "containsNull": true,
+          "elementType": {
+            "fields": [
+              {
+                "metadata": {},
+                "name": "birth_year",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "created",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "edited",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "eye_color",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "films",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "gender",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "hair_color",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "height",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "homeworld",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "mass",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "name",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "skin_color",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "species",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "starships",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "url",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "vehicles",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "struct"
+          },
+          "type": "array"
+        }
+      },
+      {
+        "metadata": {},
+        "name": "dat_load",
+        "nullable": true,
+        "type": "string"
+      }
+    ],
+    "type": "struct"
+  }

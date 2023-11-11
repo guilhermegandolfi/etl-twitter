@@ -1,15 +1,11 @@
 services:
-  jupyter_pyspark:
-    build: ./src/
-    volumes:
-      - type: bind
-        source: ./src
-        target: /app
-        bind: 
-          propagation: rslave
-
-    ports:
-      - 8888:8888
+  #jupyter_pyspark:
+  #  build: ./src/
+  #  volumes: 
+  #    - ./src:/src
+  #    #- ~/.aws/:~/.aws/
+  #  ports:
+  #    - 8888:8888
 
   python_lib:
     image: python
@@ -18,3 +14,22 @@ services:
       - ./src:/package
     entrypoint: ["pip3", "install", "--target", "/package/python_libs/python/", "-r", "requirements.txt"]
 
+  glue:
+    command: /home/glue_user/jupyter/jupyter_start.sh && sudo chown -R 10000:10000 /home/glue_user/workspace/jupyter_workspace
+    environment:
+      - DISABLE_SSL=true
+      - AWS_PROFILE=default
+      - DATALAKE_FORMATS=delta
+    image: amazon/aws-glue-libs:glue_libs_4.0.0_image_01
+    ports:
+      - '4040:4040' 
+      - '4041:4041' 
+      - '18080:18080' 
+      - '18081:18081' 
+      - '8998:8998' 
+      - '8888:8888' 
+    volumes:
+      - /home/guilherme/.aws:/home/glue_user/.aws
+      - ./src:/home/glue_user/workspace/jupyter_workspace/
+
+  

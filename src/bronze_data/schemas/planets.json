@@ -1,0 +1,135 @@
+{
+    "fields": [
+      {
+        "metadata": {},
+        "name": "count",
+        "nullable": true,
+        "type": "long"
+      },
+      {
+        "metadata": {},
+        "name": "next",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "previous",
+        "nullable": true,
+        "type": "string"
+      },
+      {
+        "metadata": {},
+        "name": "results",
+        "nullable": true,
+        "type": {
+          "containsNull": true,
+          "elementType": {
+            "fields": [
+              {
+                "metadata": {},
+                "name": "climate",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "created",
+                "nullable": true,
+                "type": "timestamp"
+              },
+              {
+                "metadata": {},
+                "name": "diameter",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "edited",
+                "nullable": true,
+                "type": "timestamp"
+              },
+              {
+                "metadata": {},
+                "name": "films",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "gravity",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "name",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "orbital_period",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "population",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "residents",
+                "nullable": true,
+                "type": {
+                  "containsNull": true,
+                  "elementType": "string",
+                  "type": "array"
+                }
+              },
+              {
+                "metadata": {},
+                "name": "rotation_period",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "surface_water",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "terrain",
+                "nullable": true,
+                "type": "string"
+              },
+              {
+                "metadata": {},
+                "name": "url",
+                "nullable": true,
+                "type": "string"
+              }
+            ],
+            "type": "struct"
+          },
+          "type": "array"
+        }
+      },
+      {
+        "metadata": {},
+        "name": "dat_load",
+        "nullable": true,
+        "type": "string"
+      }
+    ],
+    "type": "struct"
+  }
