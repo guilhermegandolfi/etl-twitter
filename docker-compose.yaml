@@ -20,6 +20,7 @@ services:
       - DISABLE_SSL=true
       - AWS_PROFILE=default
       - DATALAKE_FORMATS=delta
+      - AWS_REGION=us-east-1
     image: amazon/aws-glue-libs:glue_libs_4.0.0_image_01
     ports:
       - '4040:4040' 

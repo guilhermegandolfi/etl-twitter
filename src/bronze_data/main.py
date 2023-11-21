@@ -54,46 +54,37 @@ class IngestionBroze:
 
         return df_exploded
 
-    def check_table(self):
-        s3 = boto3.client('s3', region_name='us-east-1')
-        try:
-            response = s3.list_objects(
-                Bucket=self.bucket,
-                Prefix=f's3: // {self.bucket}/bronze_data/{self.table}',
-                MaxKeys=1)
-            if response.get('Contents')[0].get('Size') > 0:
-                return True
-            return response
-        except Exception:
+    def check_table(self, spark, database, table):
+        spark.sql(f'use {database}')
+        df = spark.sql(f"show tables like '{table}'")
+        df = df.count()
+        if df > 0:
+            return True
+        else:
             return False
 
     def write_table(self, spark, df, table_info):
         if table_info:
-            print('New Table - no upsert')
-            df.write.mode("overwrite").format("delta").save(
-                f's3://{self.bucket}/bronze_data/{self.table}')
-            # deltaTable = DeltaTable.forPath(
-            #    f's3://{self.bucket}/bronze_data/{self.table}')
-            # deltaTable.generate("symlink_format_manifest")
-            print(f'write_table: {df.count()}')
-        else:
             print('upsert')
             bronze_table_path = f's3a://{self.bucket}/bronze_data/{self.table}'
             bronze = DeltaTable.forPath(spark, bronze_table_path)
-            print('start upsert')
             bronze.alias('bronze_table').merge(
                 df.alias('raw_table'),
                 f"bronze_table.{self.idt_key}=raw_table.{self.idt_key}"
             ).whenMatchedUpdateAll()\
                 .whenNotMatchedInsertAll()\
                 .execute()
-            # print('start log')
-            # bronze.generate("symlink_format_manifest")
-            spark.sql(
-                f'GENERATE symlink_format_manifest FOR TABLE delta.`{bronze_table_path}`')
-
+            bronze.generate("symlink_format_manifest")
             df1 = spark.read.format("delta").load(f'{bronze_table_path}')
             print(f'write_table: {df1.count()}')
+
+        else:
+            df.write.mode("overwrite").format("delta").save(
+                f's3://{self.bucket}/bronze_data/{self.table}')
+            deltaTable = DeltaTable.forPath(spark,
+                                            f's3://{self.bucket}/bronze_data/{self.table}')
+            deltaTable.generate("symlink_format_manifest")
+            print(f'write_new_table: {df.count()}')
 
     def main(self):
         pass
@@ -110,6 +101,7 @@ if __name__ == "__main__":
     ]
 
     for i in tables:
+        print(f"table: {i.get('nam_table')}")
         ingestion = IngestionBroze(
             'star-wars-etl-dev', i.get('nam_table'), i.get('id_table'))
         spark = ingestion.spark_session()
@@ -121,7 +113,8 @@ if __name__ == "__main__":
         df = ingestion.transform_table(df)
 
         # check table
-        table_info = ingestion.check_table()
+        table_info = ingestion.check_table(
+            spark, 'star_wars_bronze_data', i.get('nam_table'))
 
         # write bucket
         ingestion.write_table(spark, df, table_info)

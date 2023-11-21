@@ -1,3 +1,8 @@
 spark-submit \
     --packages io.delta:delta-core_2.12:1.0.0 \
     main.py
+
+https://www.twitch.tv/videos/1309648216?filter=all&sort=time
+https://www.twitch.tv/videos/1309648534?filter=all&sort=time
+
+https://www.databricks.com/glossary/medallion-architecture
